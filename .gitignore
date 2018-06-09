@@ -1,0 +1,12 @@
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+.idea
+npm-debug.log
+app/scripts/**/*.back.js
+app/views/**/*.back.html
+app/scripts/config.js
+app/ping.json
+package-lock.json
