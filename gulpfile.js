@@ -12,8 +12,13 @@ var del = require('del');
 // para correr tareas en secuencias
 var runSequence = require('run-sequence');
 
+var scsslint = require('gulp-scss-lint');
+
 gulp.task('sass', function(){
   return gulp.src('app/scss/**/*.scss')
+  .pipe(scsslint({
+    'config': 'lint.yml'
+  }))
   .pipe(sass()) // Using gulp-sass
   .pipe(gulp.dest('app/css'))
   .pipe(browserSync.reload({

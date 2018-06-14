@@ -1,6 +1,70 @@
 .testing {
-  width: percentage(5/7);
+  width: percentage(5 / 7);
 }
+
 html {
-  background: #fff;
+  background: hsl(300, 100%, 100%);
+}
+
+// Inicializar una variable global a nivel raiz.
+$variable: 'valor inicial';
+
+// Crear un *mixin* que sobrescribe la variable global.
+@mixin global-variable-overriding {
+  $variable: 'mixin value' !global;
+}
+
+.local-scope::before {
+  // Crear una variable local que oculte la variable global.
+  $variable: 'local value';
+
+  // Incluir el *mixin*: sobrescribe la variable global.
+  @include global-variable-overriding;
+
+  // Imprimir el valor de la variable.
+  // Es la variable **local** puesto que sobrescribe la global.
+  content: $variable;
+}
+
+// Imprime la variable en otro selector que no la está sombreando.
+// Es la variable **global**, como se esperaba.
+.fuck-jesus--rodrigo::before {
+  content: $variable;
+}
+
+$z-indexes: (
+  'modal': 5000,
+  'dropdown': 4000,
+  'default': 1,
+  'below': -1,
+);
+
+/// Obtener todos los z-index a partir del nombre de una capa
+/// @access public
+/// @param {String} $layer - Nombre de la capa
+/// @return {Number}
+/// @require $z-indexes
+@function z($layer) {
+  @return map-get($z-indexes, $layer);
+}
+
+p {
+  z-index: z('modal');
+}
+
+
+%general-buttom {
+  background: #ff1;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.btn-ok {
+  @extend %general-buttom;
+  font-size: 1em;
+}
+
+.btn-cancel {
+  @extend %general-buttom;
+  font-size: 1.5em;
 }

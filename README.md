@@ -27,3 +27,7 @@ npm install del --save-dev
 Para correr tareas en secencia
 
 npm install run-sequence --save-dev
+
+Para usar SCSS-Lint hay que instalar la gema
+
+gem install scss_lint

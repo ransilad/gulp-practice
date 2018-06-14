@@ -2,4 +2,24 @@
   width: 71.42857%; }
 
 html {
-  background: #fff; }
+  background: white; }
+
+.local-scope::before {
+  content: "local value"; }
+
+.fuck-jesus--rodrigo::before {
+  content: "mixin value"; }
+
+p {
+  z-index: 5000; }
+
+.btn-ok, .btn-cancel {
+  background: #ff1;
+  text-align: center;
+  border-radius: 3px; }
+
+.btn-ok {
+  font-size: 1em; }
+
+.btn-cancel {
+  font-size: 1.5em; }
