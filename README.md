@@ -55,3 +55,11 @@ npm install run-sequence --save-dev
 ```
 gem install scss_lint
 ```
+
+### Para correr Bootstrap tenemos que instalar varias cosas, entre ellas estan
+
+```
+npm install bootstrap --save
+npm install jquery --save
+npm install popper.js --save
+```

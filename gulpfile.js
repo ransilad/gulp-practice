@@ -14,16 +14,18 @@ var runSequence = require('run-sequence');
 
 var scsslint = require('gulp-scss-lint');
 
+gulp.task('js', function() {
+  return gulp.src(['node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/jquery/dist/jquery.min.js', 'node_modules/popper.js/dist/umd/popper.min.js'])
+  .pipe(gulp.dest("app/js"))
+  .pipe(browserSync.reload({ stream: true }))
+});
+
 gulp.task('sass', function(){
-  return gulp.src('app/scss/**/*.scss')
-  .pipe(scsslint({
-    'config': 'lint.yml'
-  }))
+  return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'app/scss/**/*.scss'])
+  .pipe(scsslint({ 'config': 'lint.yml' }))
   .pipe(sass()) // Using gulp-sass
   .pipe(gulp.dest('app/css'))
-  .pipe(browserSync.reload({
-    stream: true
-  }))
+  .pipe(browserSync.reload({ stream: true }))
 });
 
 gulp.task('browserSync', function() {
@@ -54,17 +56,17 @@ gulp.task('clean', function() {
 });
 
 gulp.task('build', function (callback){
-  runSequence('clean', ['sass', 'useref', 'fonts'], callback);
+  runSequence('clean', ['sass', 'js', 'useref', 'fonts'], callback);
   console.log('Building files');
 });
 
 gulp.task('default', function (callback) {
-  runSequence(['sass', 'browserSync', 'watch'], callback);
+  runSequence(['sass', 'js', 'browserSync', 'watch'], callback);
 });
 
 // Para cambiar dinamicamente los archivos que se cambian segun el src
 // gulp.watch('app/scss/**/*.scss', ['sass']); 
-gulp.task('watch', ['browserSync', 'sass'], function(){
+gulp.task('watch', ['browserSync', 'sass', 'js'], function(){
   gulp.watch('app/scss/**/*.scss', ['sass']);
   gulp.watch('app/*.html', browserSync.reload); 
   gulp.watch('app/js/**/*.js', browserSync.reload); 
