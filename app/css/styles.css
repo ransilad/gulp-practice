@@ -1,3 +1,23 @@
+.container .row .header {
+  background: #f2f2f2;
+  padding: 20px; }
+
+.container .row main {
+  background: #e3e3e3;
+  padding: 20px; }
+
+.container .row aside {
+  background: #d3d3d3;
+  padding: 20px; }
+
+.container .row .columna {
+  background: #c3c3c3;
+  padding: 20px; }
+
+.container .row .footer {
+  background: #a1a1a1;
+  padding: 20px; }
+
 .testing {
   width: 71.42857%; }
 
